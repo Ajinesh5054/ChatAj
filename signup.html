@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card auth">
+<h1>Create Account</h1>
+<p>Signup is only for the first time.</p>
+<form method="post">
+<input name="username" placeholder="Username" required minlength="3">
+<input type="password" name="password" placeholder="Password" required minlength="6">
+<input type="password" name="confirm" placeholder="Confirm password" required minlength="6">
+<button class="primary">Sign Up</button>
+</form>
+<p>Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef3f8;color:#172033}
+header{height:64px;background:#fff;border-bottom:1px solid #dde3ea;display:flex;align-items:center;justify-content:space-between;padding:0 5%}
+.brand{font-size:24px;font-weight:800;color:#2463df;text-decoration:none}nav{display:flex;gap:14px}nav a{color:#2463df;text-decoration:none}
+.container{max-width:1050px;margin:auto;padding:25px 16px}.card{background:#fff;border-radius:18px;padding:24px;box-shadow:0 10px 30px #0001}
+.auth{max-width:430px;margin:40px auto}.wide{max-width:760px}input{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #cbd5e1;border-radius:10px;font:inherit}
+button,.btn{border:0;border-radius:10px;padding:11px 16px;background:#2463df;color:#fff;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.secondary{background:#e9eef6;color:#172033}.hero{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}.hero h1{font-size:56px;line-height:1}.hero h1 span{color:#2463df}
+.row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #edf0f4}.row small{display:block;color:#6b7280;margin-top:4px}
+.flash{padding:11px;border-radius:10px;margin-bottom:10px;background:#ffecec;color:#9b1c1c}.flash.success{background:#e8f8ee;color:#126c39}
+.share{display:grid;grid-template-columns:1fr auto;gap:8px;margin:20px 0}.chat{height:75vh;display:flex;flex-direction:column;padding:0;overflow:hidden}
+.chat-head{padding:16px;border-bottom:1px solid #e4e8ee;display:flex;justify-content:space-between;gap:12px}.chat-head small{display:block;color:#667085;margin-top:4px}
+.messages{flex:1;overflow:auto;padding:16px;background:#f7f9fc}.msg{display:flex;margin:7px 0}.mine{justify-content:flex-end}
+.bubble{max-width:75%;background:#fff;border:1px solid #dce3eb;border-radius:14px;padding:10px}.mine .bubble{background:#e9f1ff}
+.meta{font-size:12px;color:#7a8490;margin-bottom:4px}.composer{display:grid;grid-template-columns:1fr auto auto;gap:8px;padding:12px;border-top:1px solid #e4e8ee}.composer input{margin:0}
+.system{text-align:center;color:#758090;font-size:13px;padding:7px}@media(max-width:760px){.hero{grid-template-columns:1fr}.hero h1{font-size:44px}.share{grid-template-columns:1fr}}

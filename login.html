@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card auth">
+<h1>Login</h1>
+<p>Existing users login here. A shared room link also sends logged-out users here.</p>
+<form method="post">
+<input type="hidden" name="next" value="{{ next_url }}">
+<input name="username" placeholder="Username" required>
+<input type="password" name="password" placeholder="Password" required>
+<button class="primary">Login</button>
+</form>
+<p>New user? <a href="{{ url_for('signup') }}">Create account</a></p>
+</section>
+{% endblock %}

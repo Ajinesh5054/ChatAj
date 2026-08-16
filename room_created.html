@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card auth wide">
+<h1>🎉 Chatroom Created</h1>
+<p><b>{{ room.name }}</b> is ready. The host can use it too.</p>
+<div class="share">
+<input id="share" value="{{ share_url }}" readonly>
+<button class="primary" onclick="copyLink()">Copy Link</button>
+</div>
+<p id="status"></p>
+<a class="btn" href="{{ url_for('room', token=room.token) }}">Open Chatroom</a>
+<a class="btn secondary" href="{{ url_for('chatrooms') }}">Dashboard</a>
+</section>
+<script>
+async function copyLink(){
+const x=document.getElementById('share');
+try{await navigator.clipboard.writeText(x.value)}catch(e){x.select();document.execCommand('copy')}
+document.getElementById('status').textContent='Link copied!';
+}
+</script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block extra_js %}<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>{% endblock %}
+{% block content %}
+<section class="card chat">
+<div class="chat-head">
+<div><b>💬 {{ room.name }}</b><small>{{ room.description }}</small></div>
+<button class="secondary" onclick="copyRoom()">Copy URL</button>
+</div>
+<div id="messages" class="messages"></div>
+<div id="typing" class="system"></div>
+<form id="form" class="composer">
+<input id="input" maxlength="2000" autocomplete="off" placeholder="Type a message... 😊" required>
+<button type="button" onclick="emoji()">😊</button>
+<button class="primary">Send</button>
+</form>
+</section>
+<script>
+const TOKEN={{ room.token|tojson }}, ME={{ session['username']|tojson }};
+const s=io(), box=document.getElementById('messages'), input=document.getElementById('input');
+function add(d,sys=false){
+const x=document.createElement('div');
+if(sys){x.className='system';x.textContent=d.message}
+else{
+x.className='msg '+(d.username===ME?'mine':'');
+const b=document.createElement('div');b.className='bubble';
+const m=document.createElement('div');m.className='meta';m.textContent=d.username+' · '+d.time;
+const t=document.createElement('div');t.textContent=d.message;b.append(m,t);x.append(b);
+}
+box.append(x);box.scrollTop=box.scrollHeight;
+}
+s.on('connect',()=>s.emit('join_chat',{token:TOKEN}));
+s.on('receive_message',d=>add(d));
+s.on('system_message',d=>add(d,true));
+s.on('typing',d=>{document.getElementById('typing').textContent=d.username+' is typing...';setTimeout(()=>document.getElementById('typing').textContent='',900)});
+document.getElementById('form').onsubmit=e=>{
+e.preventDefault();const m=input.value.trim();if(m)s.emit('send_message',{token:TOKEN,message:m});input.value='';
+};
+input.oninput=()=>s.emit('typing',{token:TOKEN});
+function emoji(){input.value+=' 😊';input.focus()}
+async function copyRoom(){try{await navigator.clipboard.writeText(location.href);alert('Room URL copied!')}catch(e){alert(location.href)}}
+</script>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+<div><h1>Create a room.<br><span>Share one link.</span></h1>
+<p>Welcome, <b>{{ session['username'] }}</b>. The host can use the room too.</p></div>
+<section class="card"><h2>Create Chatroom</h2>
+<form method="post" action="{{ url_for('create_room') }}">
+<input name="name" placeholder="College Friends" required>
+<input name="description" placeholder="Description">
+<button class="primary">Create & Get Link</button>
+</form></section>
+</section>
+<section class="card"><h2>Chatrooms</h2>
+{% for r in rooms %}
+<div class="row"><div><b>{{ r.name }}</b><small>{{ r.description or "Real-time chatroom" }}</small></div>
+<a class="btn secondary" href="{{ url_for('room', token=r.token) }}">Open</a></div>
+{% else %}<p>No chatrooms yet.</p>{% endfor %}
+</section>
+{% endblock %}
